@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { asset } from "@/lib/asset";
 import type { Project } from "@/data/resume";
 
 /* ───────────────────────────────────────────────────────────
@@ -36,7 +37,7 @@ export function Phone({
       <div className="absolute left-1/2 top-1.5 z-20 h-4 w-16 -translate-x-1/2 rounded-full bg-[#15171f]" />
       <div className="relative h-full w-full overflow-hidden rounded-[1.6rem]">
         {shot ? (
-          <Image src={shot} alt={`${project.name} screen`} fill className="object-cover" sizes="210px" />
+          <Image src={asset(shot)} alt={`${project.name} screen`} fill className="object-cover" sizes="210px" />
         ) : (
           <MockVariant project={project} variant={variant} />
         )}
@@ -51,7 +52,7 @@ function Logo({ project, size = 28 }: { project: Project; size?: number }) {
   }
   return (
     <Image
-      src={project.logo}
+      src={asset(project.logo)}
       alt=""
       width={size}
       height={size}

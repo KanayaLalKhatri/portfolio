@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Check } from "lucide-react";
 import { PhoneTrio } from "./AppScreens";
+import { asset } from "@/lib/asset";
 import type { Project } from "@/data/resume";
 
 /**
@@ -50,7 +51,7 @@ export default function ProjectShowcase({
           >
             {project.banner ? (
               <Image
-                src={project.banner}
+                src={asset(project.banner)}
                 alt={`${project.name} showcase`}
                 width={1280}
                 height={720}
