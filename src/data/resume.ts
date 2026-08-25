@@ -10,7 +10,7 @@ export const profile = {
   location: "Karachi, Pakistan",
   email: "kanayalal.khatri7@gmail.com",
   phone: "+92 336 3762106",
-  linkedin: "https://www.linkedin.com/in/kanayalal-khatri", // update with your real URL
+  linkedin: "https://www.linkedin.com/in/kanayalalkhatri-mobile-app-developer/",
   github: "https://github.com/kanayalalkhatri", // update with your real URL
   resumeUrl: "/Kanaya_Lal_Khatri_Senior_Mobile_Developer.pdf",
   intro:
