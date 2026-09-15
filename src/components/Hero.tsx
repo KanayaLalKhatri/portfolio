@@ -128,11 +128,13 @@ export default function Hero() {
           transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="relative order-first mx-auto w-full max-w-sm lg:order-none lg:max-w-none"
         >
-          {/* glow */}
+          {/* glow behind the floating cutout */}
           <div
-            className="pointer-events-none absolute inset-0 -z-10 blur-3xl"
-            style={{ background: "radial-gradient(60% 55% at 60% 40%, rgba(100,255,218,0.18), rgba(124,131,255,0.14), transparent 70%)" }}
+            className="pointer-events-none absolute inset-0 -z-10 scale-110 blur-3xl"
+            style={{ background: "radial-gradient(55% 55% at 55% 45%, rgba(100,255,218,0.22), rgba(124,131,255,0.18), transparent 72%)" }}
           />
+          {/* soft ground shadow */}
+          <div className="pointer-events-none absolute inset-x-8 bottom-2 -z-10 h-10 rounded-[50%] bg-black/40 blur-2xl" />
 
           {/* outer: scroll-driven 3D motion */}
           <motion.div
@@ -145,24 +147,19 @@ export default function Hero() {
               transformPerspective: 1000,
             }}
           >
-            {/* inner: mouse parallax */}
+            {/* inner: mouse parallax — transparent cutout floats in 3D */}
             <motion.div
               style={{ x: px, y: py, rotateZ: rot }}
-              className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl"
+              className="relative mx-auto aspect-[4/5] w-full max-w-md"
             >
               <Image
                 src={asset("/profile.png")}
                 alt={profile.name}
                 fill
                 priority
-                sizes="(max-width: 1024px) 90vw, 45vw"
-                className="object-cover object-top"
+                sizes="(max-width: 1024px) 80vw, 45vw"
+                className="object-contain object-bottom drop-shadow-[0_25px_45px_rgba(0,0,0,0.55)]"
               />
-              {/* blend photo edges into the dark hero */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background via-background/30 to-transparent" />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-l from-background/70 via-transparent to-transparent" />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-              <div className="pointer-events-none absolute inset-0 bg-background/15" />
             </motion.div>
           </motion.div>
 
