@@ -6,6 +6,7 @@ import {
   motion,
   useMotionValue,
   useSpring,
+  useScroll,
   useTransform,
 } from "framer-motion";
 import { Mail, MapPin, ArrowDown } from "lucide-react";
@@ -32,6 +33,18 @@ export default function Hero() {
   const px = useTransform(sx, [-0.5, 0.5], [-22, 22]);
   const py = useTransform(sy, [-0.5, 0.5], [-16, 16]);
   const rot = useTransform(sx, [-0.5, 0.5], [-4, 4]);
+
+  // Scroll-driven 3D animation for the photo
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const sp = useSpring(scrollYProgress, { stiffness: 90, damping: 25 });
+  const scrollScale = useTransform(sp, [0, 1], [1, 1.18]);
+  const scrollY = useTransform(sp, [0, 1], [0, -80]);
+  const scrollRotX = useTransform(sp, [0, 1], [0, 14]);
+  const scrollRotY = useTransform(sp, [0, 1], [0, -10]);
+  const scrollOpacity = useTransform(sp, [0, 0.85, 1], [1, 1, 0.4]);
 
   const onMove = (e: React.MouseEvent) => {
     const r = ref.current?.getBoundingClientRect();
@@ -121,23 +134,36 @@ export default function Hero() {
             style={{ background: "radial-gradient(60% 55% at 60% 40%, rgba(100,255,218,0.18), rgba(124,131,255,0.14), transparent 70%)" }}
           />
 
+          {/* outer: scroll-driven 3D motion */}
           <motion.div
-            style={{ x: px, y: py, rotateZ: rot }}
-            className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl"
+            style={{
+              scale: scrollScale,
+              y: scrollY,
+              rotateX: scrollRotX,
+              rotateY: scrollRotY,
+              opacity: scrollOpacity,
+              transformPerspective: 1000,
+            }}
           >
-            <Image
-              src={asset("/profile.png")}
-              alt={profile.name}
-              fill
-              priority
-              sizes="(max-width: 1024px) 90vw, 45vw"
-              className="object-cover object-top"
-            />
-            {/* blend photo edges into the dark hero */}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background via-background/30 to-transparent" />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-l from-background/70 via-transparent to-transparent" />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-            <div className="pointer-events-none absolute inset-0 bg-background/15" />
+            {/* inner: mouse parallax */}
+            <motion.div
+              style={{ x: px, y: py, rotateZ: rot }}
+              className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl"
+            >
+              <Image
+                src={asset("/profile.png")}
+                alt={profile.name}
+                fill
+                priority
+                sizes="(max-width: 1024px) 90vw, 45vw"
+                className="object-cover object-top"
+              />
+              {/* blend photo edges into the dark hero */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background via-background/30 to-transparent" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-l from-background/70 via-transparent to-transparent" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+              <div className="pointer-events-none absolute inset-0 bg-background/15" />
+            </motion.div>
           </motion.div>
 
           {/* animated sparkle accent */}
