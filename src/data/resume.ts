@@ -44,7 +44,9 @@ export const experience: Experience[] = [
       "Rewrote the Idenex KYC SDK (~84k LOC) from Android to Kotlin Multiplatform + Compose Multiplatform — 17 modules merged into one .aar (Android) and one .xcframework (iOS), published as com.idenex:idenex:2.0.0 with zero public-API breakage.",
       "Delivered face liveness (MiniFASNet anti-spoof), TFLite YOLO document OCR and NFC eMRTD passport reading on both platforms (JMRTD on Android, CoreNFC on iOS).",
       "Built shared-Kotlin crypto for ISO 18013-5 mDoc, COSE/JWS and a from-scratch CBOR codec — 16-test RFC/NIST conformance suite passing on JVM and Kotlin/Native.",
-      "Migrated client apps (Quepass, Use Case App, Angle) to KMP with Ktor, Koin, SQLDelight and MVI; CI runs the shared test suite on JVM and iOS simulator.",
+      "Migrated client apps (Quepass, Use Case App, Idp wallet, Angle) to KMP with Ktor, Koin, SQLDelight and MVI; CI runs the shared test suite on JVM and iOS simulator.",
+      "Built Avix — the ADNOC × Abu Dhabi Aviation check-in kiosk (KMP, Android + iOS) with hardware-backed device identity: P-256 keys in Android Keystore / iOS Secure Enclave, signed handshake, heartbeat and per-visit SDK credentials.",
+      "Set up release pipelines on GitHub Actions: SDK publishing to GitHub Packages with auto version stamps, Android & signed iOS builds to Firebase App Distribution / TestFlight, Crashlytics on both platforms.",
       "Led end-to-end development of KYC and Digital Onboarding solutions — Face Liveness detection, OCR document scanning, and biometric authentication — reducing verification time by 35%.",
       "Architected production-grade Android apps from scratch using MVVM and Clean Architecture for scalability and maintainability.",
       "Built reusable SDK-based Android solutions enabling seamless third-party integrations across multiple client products.",
@@ -131,6 +133,25 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    name: "Avix — Airport Check-in Kiosk",
+    category: "ADNOC × Abu Dhabi Aviation · KMP",
+    period: "Oct 2026",
+    featured: true,
+    shots: ["/projects/avix/1.jpg", "/projects/avix/2.jpg", "/projects/avix/3.jpg"],
+    colors: ["#3b5bdb", "#14336b"],
+    screenIcon: "✈️",
+    screenLabel: "Kiosk check-in",
+    description:
+      "Biometric check-in kiosk for ADNOC × Abu Dhabi Aviation, built as one Kotlin Multiplatform app for Android tablets and iPad on the Quepass KMP SDK. A kiosk enrols itself, proves its identity with a hardware-backed key, and then runs passenger journeys — secure kiosk face search, user registration, authentication and face login.",
+    highlights: [
+      "Device identity: P-256 key in Android Keystore / iOS Secure Enclave, signed handshake + heartbeat",
+      "AVIX Secure Kiosk API — enrol, check-in, identify, baggage, boarding states",
+      "Same UI on Android & iOS, web-kiosk design system (Figtree, navy tokens)",
+      "GitHub Actions → Firebase App Distribution for Android and iOS",
+    ],
+    tags: ["Kotlin Multiplatform", "Compose MP", "Secure Enclave", "Keystore", "Quepass SDK", "CI/CD"],
+  },
+  {
     name: "Idenex KYC SDK — Kotlin Multiplatform",
     category: "KMP SDK · Android + iOS",
     period: "2025 – Present",
@@ -163,8 +184,9 @@ export const projects: Project[] = [
       "Biometric identity kiosk built on the Idenex KMP SDK — platform registration, express verification, face authentication and transactions — running natively on iPhone and Android from one Compose Multiplatform codebase.",
     highlights: [
       "Same UI & flows on iOS and Android",
-      "Document capture, manual entry & face journeys",
-      "Configurable environments, liveness & kiosk modes",
+      "SDK published to GitHub Packages by CI with auto version stamps",
+      "Signed iOS + Android builds shipped via Firebase App Distribution / TestFlight",
+      "Lottie face overlays (Compottie), Crashlytics + shareable diagnostics log",
     ],
     tags: ["Compose Multiplatform", "iOS", "Android", "Idenex SDK"],
   },
@@ -194,13 +216,30 @@ export const projects: Project[] = [
     screenIcon: "💳",
     screenLabel: "Parent & Child",
     description:
-      "Kotlin Multiplatform rebuild of the Angle family-fintech app — shared Ktor + SQLDelight + Koin core, MVI, Compose Multiplatform UI for Android and iOS, with payments, cards, spending limits and Firestore realtime chat.",
+      "Kotlin Multiplatform rebuild of the Angle family-fintech app — shared Ktor + SQLDelight + Koin core, MVI, Compose Multiplatform UI for Android and iOS, with payments, cards, spending limits and Firestore realtime chat. Parity with the legacy app was delivered in five parallel feature branches, then merged and verified.",
     highlights: [
-      "68 endpoints in shared Kotlin",
-      "SQLDelight offline cache + MVI",
-      "JazzCash payments & Firestore chat",
+      "67 screens swept on device — 0 crashes; iOS launch verified",
+      "68 legacy endpoints in shared Kotlin, SQLDelight cache + MVI",
+      "Parent & child flows: funds, cards, market, top-ups, QR pay",
+      "Firestore realtime chat, iOS edge-swipe back, responsive layouts",
     ],
     tags: ["KMP", "Compose MP", "SQLDelight", "Ktor", "Firestore"],
+  },
+  {
+    name: "Hybird Idp — Credential Wallet (KMP)",
+    category: "Digital Identity Wallet · Compose Multiplatform",
+    logo: "/projects/icons/idenex-idp.webp",
+    colors: ["#6366f1", "#312e81"],
+    screenIcon: "🪪",
+    screenLabel: "Wallet",
+    description:
+      "Kotlin Multiplatform port of the Idenex identity-provider wallet — dashboard, credential wallet, card details and sharing, documents with PDF viewing & signing, DTC and OCT credentials, and push notifications on Android (FCM) and iOS (APNs).",
+    highlights: [
+      "Wallet, documents & PDF signing in shared Compose UI",
+      "DTC (passport-chip) and OCT credentials",
+      "FCM + APNs push, secure storage & biometric seams",
+    ],
+    tags: ["Kotlin Multiplatform", "Compose MP", "mDoc", "Push"],
   },
   {
     name: "IndoorNav",
@@ -382,7 +421,6 @@ export const projects: Project[] = [
   {
     name: "Finger Detection",
     category: "Biometrics / On-Device ML",
-    featured: true,
     logo: "/projects/icons/finger-detection.webp",
     shots: [
       "/projects/finger-detection/1.png",
