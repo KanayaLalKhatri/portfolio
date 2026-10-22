@@ -45,7 +45,7 @@ export const experience: Experience[] = [
       "Delivered face liveness (MiniFASNet anti-spoof), TFLite YOLO document OCR and NFC eMRTD passport reading on both platforms (JMRTD on Android, CoreNFC on iOS).",
       "Built shared-Kotlin crypto for ISO 18013-5 mDoc, COSE/JWS and a from-scratch CBOR codec — 16-test RFC/NIST conformance suite passing on JVM and Kotlin/Native.",
       "Migrated client apps (Quepass, Use Case App, Idp wallet, Angle) to KMP with Ktor, Koin, SQLDelight and MVI; CI runs the shared test suite on JVM and iOS simulator.",
-      "Built Avix — the ADNOC × Abu Dhabi Aviation check-in kiosk (KMP, Android + iOS) with hardware-backed device identity: P-256 keys in Android Keystore / iOS Secure Enclave, signed handshake, heartbeat and per-visit SDK credentials.",
+      "Built Avix — an airport check-in kiosk for an aviation client (KMP, Android + iOS) with hardware-backed device identity: P-256 keys in Android Keystore / iOS Secure Enclave, signed handshake, heartbeat and per-visit SDK credentials.",
       "Set up release pipelines on GitHub Actions: SDK publishing to GitHub Packages with auto version stamps, Android & signed iOS builds to Firebase App Distribution / TestFlight, Crashlytics on both platforms.",
       "Led end-to-end development of KYC and Digital Onboarding solutions — Face Liveness detection, OCR document scanning, and biometric authentication — reducing verification time by 35%.",
       "Architected production-grade Android apps from scratch using MVVM and Clean Architecture for scalability and maintainability.",
@@ -134,7 +134,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     name: "Avix — Airport Check-in Kiosk",
-    category: "ADNOC × Abu Dhabi Aviation · KMP",
+    category: "Airport Check-in · Kotlin Multiplatform",
     period: "Oct 2026",
     featured: true,
     shots: ["/projects/avix/1.jpg", "/projects/avix/2.jpg", "/projects/avix/3.jpg"],
@@ -142,7 +142,7 @@ export const projects: Project[] = [
     screenIcon: "✈️",
     screenLabel: "Kiosk check-in",
     description:
-      "Biometric check-in kiosk for ADNOC × Abu Dhabi Aviation, built as one Kotlin Multiplatform app for Android tablets and iPad on the Quepass KMP SDK. A kiosk enrols itself, proves its identity with a hardware-backed key, and then runs passenger journeys — secure kiosk face search, user registration, authentication and face login.",
+      "Biometric check-in kiosk for an aviation client, built as one Kotlin Multiplatform app for Android tablets and iPad on the Quepass KMP SDK. A kiosk enrols itself, proves its identity with a hardware-backed key, and then runs passenger journeys — secure kiosk face search, user registration, authentication and face login.",
     highlights: [
       "Device identity: P-256 key in Android Keystore / iOS Secure Enclave, signed handshake + heartbeat",
       "AVIX Secure Kiosk API — enrol, check-in, identify, baggage, boarding states",
