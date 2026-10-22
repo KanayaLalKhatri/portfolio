@@ -211,7 +211,8 @@ export const projects: Project[] = [
     name: "Angle Hybird (KMP rebuild)",
     category: "Family Fintech · Kotlin Multiplatform",
     logo: "/projects/icons/angle.png",
-    shots: ["/projects/angle-hybird/1.jpg"],
+    featured: true,
+    shots: ["/projects/angle-hybird/1.jpg", "/projects/angle-hybird/2.jpg", "/projects/angle-hybird/3.jpg"],
     colors: ["#6366f1", "#f97316"],
     screenIcon: "💳",
     screenLabel: "Parent & Child",
@@ -306,6 +307,7 @@ export const projects: Project[] = [
   {
     name: "Angle",
     category: "Digital Wallet & Loyalty",
+    shots: ["/projects/angle/1.jpg", "/projects/angle/2.jpg", "/projects/angle/3.jpg"],
     logo: "/projects/icons/angle.png",
     period: "Dec 2021 – Feb 2023",
     colors: ["#f59e0b", "#ef4444"],
